@@ -1,0 +1,25 @@
+//npm init (npm c'est lle node package manager ) pour l'executer il est obligatoire d'installer node js
+//=> eneter successive => une fichier .json sera creer 
+//creer file server.js manuellement
+
+//creer server avec execution permenante 
+
+const express = require('express');
+
+
+const app = express();
+
+app.listen(3000, () => {
+    console.log("ca marche !!")
+})
+
+
+    // status examples (error and success type)
+    // 200 :success
+    // 500: Server error
+    // 400 : bad Request
+    // 404 : not found
+    // 401: unothorized
+
+
+    // npm i multer (bibliotéque d'installation de fichier  )

@@ -9,34 +9,30 @@ fileName = '';
 //param de uplolad fichier
 const mystorage = multer.diskStorage({
     destination: './uploads',
-    fileName: (req, file, redirect) => {
-
+    filename: (req, file, redirect) => {
         let date = Date.now();
         let fl = date + '.' + file.mimetype.split('/')[1];
-        redirect(null, fl);
         fileName = fl;
+        redirect(null, fl);
+        
     }
-})
+});
 
 const upload = multer({ storage: mystorage });
 
-// crud product ********************* ****************************************/
-
-//create Product
+// CRUD product
+// Create product
 router.post('/createProd', upload.any('image'), async (req, res) => {
 
     try {
-        data = req.body;
-        prod = new Product(data);
+        const data = req.body;
+        const prod = new Product(data);
         prod.image = fileName;
-        savedProd = await prod.save();
+        const savedProd = await prod.save();
         fileName = '';
         res.status(200).send(savedProd);
-
-    }
-
-    catch (error) {
-        res.status(400).send(error)
+    } catch (error) {
+        res.status(400).send(error);
     }
 });
 
